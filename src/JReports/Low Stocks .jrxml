@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ceyesta_Invoice" pageWidth="216" pageHeight="360" whenNoDataType="NoPages" columnWidth="176" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="efba03b0-f2c6-4d47-bd5f-90526012b047">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Cheysta-REst"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="InKOT" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+KOT.KOTNO,
+KOT.Date,
+KOT.CreatedBy,
+KOTitems.Qty,
+Invoice.InvoiceNo,
+RawItems.ItemName
+FROM
+KOT
+INNER JOIN KOTitems ON KOTitems.idKOT = KOT.idKOT
+INNER JOIN Invoice ON KOT.idInvoice = Invoice.idInvoice
+INNER JOIN RawItems ON KOTitems.idRawItems = RawItems.idRawItems
+WHERE
+KOT.idKOT =  $P{InKOT}]]>
+	</queryString>
+	<field name="KOTNO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="KOTNO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="KOT"/>
+	</field>
+	<field name="Date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="Date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="KOT"/>
+	</field>
+	<field name="CreatedBy" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CreatedBy"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="KOT"/>
+	</field>
+	<field name="Qty" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Qty"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="KOTitems"/>
+	</field>
+	<field name="InvoiceNo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="InvoiceNo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Invoice"/>
+	</field>
+	<field name="ItemName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ItemName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="RawItems"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="0" width="178" height="22" uuid="e06db9d8-2e8c-4714-8503-fc4c85eb2994"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="serif" size="14"/>
+				</textElement>
+				<text><![CDATA[FOOD ITEM CODE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="0" width="29" height="13" uuid="15400202-5514-4e75-879e-c6a41f8656b6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="serif" size="9"/>
+					<paragraph lineSpacing="AtLeast"/>
+				</textElement>
+				<text><![CDATA[CODE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="0" width="149" height="13" uuid="92a3eec4-2af0-4c1b-9947-0c9a3190e89d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="serif" size="9"/>
+				</textElement>
+				<text><![CDATA[ITEM NAME]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="14" width="181" height="1" uuid="e15e3d81-d603-40d1-85e0-bd8a4eaf928e"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch"/>
+	</detail>
+	<pageFooter>
+		<band height="13" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

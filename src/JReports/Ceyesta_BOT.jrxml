@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ceyesta_Invoice" pageWidth="216" pageHeight="360" whenNoDataType="NoPages" columnWidth="176" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="efba03b0-f2c6-4d47-bd5f-90526012b047">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Cheysta-REst"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<subDataset name="Dataset1" uuid="fb31c559-d0b6-4bca-a731-ea083cdaae48">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="products" class="java.lang.String"/>
+		<field name="cost" class="java.lang.Double"/>
+	</subDataset>
+	<parameter name="InKOT" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+KOT.KOTNO,
+KOT.Date,
+KOT.CreatedBy,
+Invoice.InvoiceTime,
+InvoiceDailyOrderNo.DaliyNo,
+RawItems.ItemName,
+KOTitems.Qty,
+FoodItemInfo.FoodItemCode
+FROM
+KOT
+INNER JOIN Invoice ON KOT.idInvoice = Invoice.idInvoice
+INNER JOIN InvoiceItems ON InvoiceItems.idInvoice = Invoice.idInvoice
+INNER JOIN InvoiceDailyOrderNo ON InvoiceDailyOrderNo.idInvoice = Invoice.idInvoice
+INNER JOIN RawItems ON InvoiceItems.idRawItems = RawItems.idRawItems
+INNER JOIN KOTitems ON KOTitems.idKOT = KOT.idKOT AND KOTitems.idRawItems = RawItems.idRawItems
+INNER JOIN FoodItemInfo ON FoodItemInfo.idRawItems = RawItems.idRawItems
+WHERE
+KOT.idKOT =  $P{InKOT}]]>
+<!--GROUP BY-->
+<!--RawItems.ItemName-->
+	</queryString>
+	<field name="KOTNO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="KOTNO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="KOT"/>
+	</field>
+	<field name="Date" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="KOT"/>
+	</field>
+	<field name="CreatedBy" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CreatedBy"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="KOT"/>
+	</field>
+	<field name="InvoiceTime" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="InvoiceTime"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Invoice"/>
+	</field>
+	<field name="DaliyNo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DaliyNo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="InvoiceDailyOrderNo"/>
+	</field>
+	<field name="ItemName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ItemName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="RawItems"/>
+	</field>
+	<field name="Qty" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Qty"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="KOTitems"/>
+	</field>
+	<field name="FoodItemCode" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="FoodItemCode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="FoodItemInfo"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="0" width="180" height="23" uuid="6674c3d5-5c64-4c87-9500-3c914838047b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[KOT]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="72" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="3" width="30" height="13" uuid="e06db9d8-2e8c-4714-8503-fc4c85eb2994"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[NO :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="16" width="30" height="13" uuid="15400202-5514-4e75-879e-c6a41f8656b6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+					<paragraph lineSpacing="AtLeast"/>
+				</textElement>
+				<text><![CDATA[Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="3" width="39" height="13" uuid="56fbe693-f0a0-47bd-bb8c-2919c89b2c0f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Cashier :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="68" width="176" height="1" uuid="ac42d689-bb54-4453-8574-a2d1acfafa18"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="81" y="54" width="100" height="13" uuid="f9ae7e6e-5516-46b9-979a-ebd9334b7835">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6c5c7195-a694-4e1b-83b1-6fd76b317d0e"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[QTY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="16" width="39" height="13" uuid="e3b21f20-e769-4c17-b65e-f861aea75dcd"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="29" width="78" height="24" uuid="a7d3f2a4-c73e-493c-b723-51ea2347398a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="16"/>
+				</textElement>
+				<text><![CDATA[ORDER :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="30" y="3" width="60" height="13" uuid="ce50d00d-1149-412a-a2b4-f1efcdf4563d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KOTNO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="78" y="29" width="103" height="24" uuid="f2614543-9bf9-47cd-bbcf-b4aa2710d6d8"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DaliyNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="3" width="52" height="13" uuid="e5e6ed4d-fe71-4c58-bec6-ad97e13ee695"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CreatedBy}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="16" width="52" height="13" uuid="7b26d521-d9fd-4479-b943-e026cb35e923"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{InvoiceTime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="16" width="60" height="13" uuid="eb3bd811-6ea5-422f-8a0d-8bf4a4d8c4ab"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="54" width="80" height="13" uuid="262c2f2f-ebae-4a5f-9f49-52159acc0997">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e39ebebb-b069-4a2e-93af-df79c6f37ec1"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="81" height="25" uuid="8ca52708-5c4b-4834-acc6-8f1068fe5280">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ae7219a4-cab7-4d08-a686-6c316b1e0be9"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FoodItemCode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="0" width="100" height="25" uuid="55189654-d370-4be4-bfd9-2a24f727c266">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a66835c9-7986-4b76-b8a3-b47a971566a1"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Qty}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

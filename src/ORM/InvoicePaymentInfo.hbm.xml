@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 1, 2018 9:50:02 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ORM.InvoicePaymentInfo" table="InvoicePaymentInfo" catalog="Ceyesta" optimistic-lock="version">
+        <id name="idInvoicePaymentInfo" type="java.lang.Integer">
+            <column name="idInvoicePaymentInfo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="invoice" class="ORM.Invoice" fetch="select">
+            <column name="idInvoice" not-null="true" />
+        </many-to-one>
+        <property name="cashTenderd" type="string">
+            <column name="CashTenderd" length="45" />
+        </property>
+        <property name="cashBalance" type="string">
+            <column name="CashBalance" length="45" />
+        </property>
+        <property name="isDelete" type="string">
+            <column name="isDelete" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

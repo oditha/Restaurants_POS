@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 1, 2018 9:50:02 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ORM.RowItemExpireDate" table="RowItemExpireDate" catalog="Ceyesta" optimistic-lock="version">
+        <id name="idRowItemExpireDate" type="java.lang.Integer">
+            <column name="idRowItemExpireDate" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="rawItems" class="ORM.RawItems" fetch="select">
+            <column name="idRawItems" not-null="true" />
+        </many-to-one>
+        <property name="expireDate" type="string">
+            <column name="ExpireDate" length="45" />
+        </property>
+        <property name="manufactureDate" type="string">
+            <column name="ManufactureDate" length="45" />
+        </property>
+        <property name="batchNo" type="string">
+            <column name="BatchNo" length="45" />
+        </property>
+        <property name="isDelete" type="string">
+            <column name="isDelete" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 1, 2018 9:50:02 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ORM.Kot" table="KOT" catalog="Ceyesta" optimistic-lock="version">
+        <id name="idKot" type="java.lang.Integer">
+            <column name="idKOT" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="invoice" class="ORM.Invoice" fetch="select">
+            <column name="idInvoice" not-null="true" />
+        </many-to-one>
+        <property name="kotno" type="string">
+            <column name="KOTNO" length="45" />
+        </property>
+        <property name="date" type="string">
+            <column name="Date" length="45" />
+        </property>
+        <property name="createdBy" type="string">
+            <column name="CreatedBy" length="45" />
+        </property>
+        <property name="isDelete" type="string">
+            <column name="isDelete" length="45" />
+        </property>
+        <set name="kotitemses" table="KOTitems" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idKOT" not-null="true" />
+            </key>
+            <one-to-many class="ORM.Kotitems" />
+        </set>
+    </class>
+</hibernate-mapping>

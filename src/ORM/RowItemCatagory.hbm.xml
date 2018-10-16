@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 1, 2018 9:50:02 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ORM.RowItemCatagory" table="RowItemCatagory" catalog="Ceyesta" optimistic-lock="version">
+        <id name="idRowItemCatagory" type="java.lang.Integer">
+            <column name="idRowItemCatagory" />
+            <generator class="identity" />
+        </id>
+        <property name="catagoryName" type="string">
+            <column name="CatagoryName" length="45" />
+        </property>
+        <property name="catagoryCode" type="string">
+            <column name="CatagoryCode" length="45" />
+        </property>
+        <property name="isDelete" type="string">
+            <column name="isDelete" length="45" />
+        </property>
+        <property name="catoType" type="string">
+            <column name="CatoType" />
+        </property>
+        <set name="rawItemses" table="RawItems" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idRowItemCatagory" not-null="true" />
+            </key>
+            <one-to-many class="ORM.RawItems" />
+        </set>
+    </class>
+</hibernate-mapping>

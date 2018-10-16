@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 1, 2018 9:50:02 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ORM.Table" table="Table" catalog="Ceyesta" optimistic-lock="version">
+        <id name="idTable" type="java.lang.Integer">
+            <column name="idTable" />
+            <generator class="identity" />
+        </id>
+        <property name="tableNo" type="string">
+            <column name="TableNo" length="45" />
+        </property>
+        <set name="employeesHasTables" table="Employees_has_Table" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idTable" not-null="true" />
+            </key>
+            <one-to-many class="ORM.EmployeesHasTable" />
+        </set>
+        <set name="invoiceHasTables" table="Invoice_has_Table" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Table_idTable" not-null="true" />
+            </key>
+            <one-to-many class="ORM.InvoiceHasTable" />
+        </set>
+    </class>
+</hibernate-mapping>
